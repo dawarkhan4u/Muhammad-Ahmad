@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email ROI Calculator — See Your Klaviyo Upside | Emailro</title>
+<meta name="description" content="Calculate how much revenue your Klaviyo account should be generating. Move the sliders and see exactly what you're leaving on the table — then book a free audit.">
+<meta name="keywords" content="email ROI calculator, Klaviyo revenue calculator, email marketing ROI, DTC email revenue, Klaviyo attributed revenue calculator">
+<link rel="canonical" href="https://emailro.retentionagency.workers.dev/roi.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://emailro.retentionagency.workers.dev/roi.html">
+<meta property="og:title" content="Email ROI Calculator — See Your Klaviyo Upside | Emailro">
+<meta property="og:description" content="Calculate how much revenue your Klaviyo account should be generating. See exactly what you're leaving on the table.">
+<meta property="og:image" content="https://emailro.retentionagency.workers.dev/assets/img-064.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Email ROI Calculator | Emailro">
+<meta name="twitter:description" content="See exactly how much revenue you're leaving in your Klaviyo account.">
+<meta name="twitter:image" content="https://emailro.retentionagency.workers.dev/assets/img-064.jpg">
+<link rel="icon" type="image/jpeg" href="assets/img-064.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"></noscript>
+<style>
+/* ── TOKENS ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0f1c;--bg-2:#0d1322;--bg-3:#121929;--surface:#11182a;
+  --line:rgba(245,242,236,.07);--line-2:rgba(245,242,236,.12);
+  --ink:#f5f2ec;--ink-dim:rgba(245,242,236,.62);--ink-faint:rgba(245,242,236,.38);
+  --teal:#7dd3fc;--teal-soft:rgba(125,211,252,.14);--teal-line:rgba(125,211,252,.28);
+  --sand:oklch(0.92 0.07 80);--sand-soft:oklch(0.92 0.07 80 / .14);
+  --display:'Bricolage Grotesque',sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Plus Jakarta Sans',sans-serif;
+  --rad:14px;--maxw:1200px;
+}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+::selection{background:var(--teal);color:var(--bg)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--teal-line)}
+
+/* ── TYPE ── */
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--teal-soft);border:1px solid var(--teal-line);color:var(--teal);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:20px;}
+.eyebrow::before{content:'';width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--teal);flex-shrink:0;animation:blink 1.6s .6s infinite;}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--sand)}
+.tl{color:var(--teal)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-.025em;line-height:1.05;color:var(--ink)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:999px;font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:-.005em;border:1px solid transparent;cursor:pointer;transition:transform .25s cubic-bezier(.2,.8,.2,1),background .25s,color .25s,border-color .25s,box-shadow .35s;white-space:nowrap;}
+.btn .arr{transition:transform .25s}
+.btn:hover .arr{transform:translateX(3px)}
+.btn-primary{background:var(--teal);color:#06121f}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 36px -12px rgba(125,211,252,.55)}
+.btn-ghost{background:rgba(245,242,236,.08);color:var(--ink);border-color:rgba(245,242,236,.3)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(245,242,236,.14);transform:translateY(-1px)}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(8,12,22,.0);backdrop-filter:blur(0px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s,backdrop-filter .3s;}
+nav.scrolled{background:rgba(8,12,22,.88);backdrop-filter:blur(24px) saturate(150%);border-bottom-color:rgba(245,242,236,.06);}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:17px;font-weight:700;letter-spacing:-.02em;color:var(--ink);text-decoration:none;flex-shrink:0;}
+.nav-logo img{height:52px;width:auto}
+.nav-progress{position:absolute;left:0;right:0;bottom:-1px;height:1px;background:linear-gradient(90deg,var(--teal),var(--teal) var(--p,0%),transparent var(--p,0%));}
+.nav-center{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:2px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 6px;}
+.nav-center a{font-size:13px;font-weight:500;color:rgba(245,242,236,.7);padding:7px 16px;border-radius:100px;transition:color .2s,background .2s;letter-spacing:.01em;white-space:nowrap;}
+.nav-center a:hover{color:var(--ink);background:rgba(255,255,255,.08)}
+.nav-center a.active{color:var(--ink);background:rgba(255,255,255,.1);font-weight:600;}
+.nav-right{display:flex;align-items:center;gap:14px;flex-shrink:0;}
+.nav-cta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:#0a0f1c;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.01em;padding:9px 20px;border-radius:100px;transition:opacity .2s,transform .2s,box-shadow .2s;white-space:nowrap;}
+.nav-cta:hover{opacity:.92;transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(255,255,255,.25)}
+@media(max-width:900px){.nav-center{display:none}.nav-right .btn-ghost{display:none}}
+@media(max-width:600px){nav{padding:0 20px}}
+
+/* ── MOBILE NAV DRAWER ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;margin-left:auto;}
+.hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;display:block;transition:transform .3s,opacity .3s;}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+.nav-drawer{position:fixed;top:64px;left:0;right:0;background:rgba(10,15,28,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--line-2);padding:20px 24px 28px;z-index:999;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .3s;}
+.nav-drawer.open{transform:translateY(0);opacity:1;pointer-events:all;}
+.nav-drawer a{display:block;font-size:16px;font-weight:500;color:var(--ink-dim);padding:14px 0;border-bottom:1px solid var(--line);transition:color .2s;letter-spacing:.01em;}
+.nav-drawer a:last-child{border-bottom:none;}
+.nav-drawer a:hover,.nav-drawer a.active{color:var(--ink);}
+@media(max-width:900px){.hamburger{display:flex;}}
+
+/* ── SHADER BACKGROUND ── */
+#shaderCanvas{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-2;display:block;pointer-events:none;}
+.shader-overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:-1;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(10,15,28,.6) 0%,rgba(10,15,28,.45) 50%,rgba(10,15,28,.85) 90%,var(--bg) 100%);}
+
+/* ── HERO ── */
+.roi-hero{padding:140px 40px 80px;text-align:center;max-width:860px;margin:0 auto;}
+.roi-hero h1{font-size:clamp(42px,6vw,80px);font-weight:700;letter-spacing:-.04em;line-height:1.0;margin-bottom:20px;}
+.roi-hero p{font-size:18px;color:var(--ink-dim);font-weight:300;line-height:1.55;max-width:560px;margin:0 auto;}
+
+/* ── CALCULATOR GRID ── */
+.calc-wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px 100px;}
+.calc-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:16px;align-items:start;}
+
+/* ── PANELS ── */
+.panel{background:var(--surface);border:1px solid var(--line-2);border-radius:20px;padding:42px 40px;}
+.panel.results{
+  border-color:var(--teal-line);position:sticky;top:84px;
+  box-shadow:0 0 0 1px rgba(125,211,252,.12),0 0 60px -10px rgba(125,211,252,.25),0 20px 80px -20px rgba(125,211,252,.18),inset 0 1px 0 rgba(125,211,252,.10),inset 0 0 80px rgba(125,211,252,.04);
+}
+
+/* ── INPUT PANEL ── */
+.panel-title{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:32px;}
+.roi-field{margin-bottom:36px;}
+.roi-field:last-of-type{margin-bottom:0}
+.roi-field-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px;}
+.roi-field-name{display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,242,236,.65);}
+.roi-field-name svg{flex-shrink:0;opacity:.8}
+.roi-field-val{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink);line-height:1;}
+.roi-slider{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:2px;background:rgba(245,242,236,.12);outline:none;cursor:pointer;display:block;}
+.roi-slider:focus-visible{outline:2px solid var(--teal);outline-offset:6px;border-radius:2px;}
+.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:rgba(245,242,236,.92);cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.5);transition:transform .15s,box-shadow .15s;}
+.roi-slider::-webkit-slider-thumb:hover{transform:scale(1.12);box-shadow:0 3px 16px rgba(0,0,0,.65)}
+.roi-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:rgba(245,242,236,.92);border:none;cursor:pointer;}
+
+/* industry benchmarks */
+.benchmarks{margin-top:40px;padding-top:32px;border-top:1px solid var(--line);}
+.bench-title{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:16px;}
+.bench-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);}
+.bench-row:last-of-type{border-bottom:none}
+.bench-label{font-size:12.5px;color:var(--ink-dim);}
+.bench-val{font-size:12.5px;font-weight:600;color:var(--ink);}
+.bench-badge{font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:100px;}
+.bench-badge.good{background:rgba(125,211,252,.12);color:var(--teal);}
+.bench-badge.avg{background:rgba(245,242,236,.08);color:var(--ink-dim);}
+.bench-badge.warn{background:rgba(251,191,36,.12);color:#fbbf24;}
+.bench-badge.bad{background:rgba(239,68,68,.12);color:#f87171;}
+
+/* ── RESULTS PANEL ── */
+.roi-lift-tag{display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,242,236,.65);margin-bottom:12px;}
+.roi-lift-tag svg{color:var(--teal);flex-shrink:0;}
+.roi-main-num{font-family:var(--display);font-size:clamp(52px,5.5vw,80px);font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink);margin-bottom:6px;transition:all .4s cubic-bezier(.2,.8,.2,1);}
+.roi-main-sub{font-size:14px;color:rgba(245,242,236,.7);margin-bottom:28px;font-weight:400;line-height:1.4;}
+.roi-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;align-items:stretch;}
+.roi-stat-box{background:rgba(245,242,236,.04);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;}
+.roi-stat-box.hl{background:var(--ink);border-color:var(--ink);}
+.roi-stat-lbl{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.6);margin-bottom:8px;}
+.roi-stat-box.hl .roi-stat-lbl{color:rgba(10,15,28,.5);}
+.roi-stat-num{font-family:var(--display);font-size:21px;font-weight:700;letter-spacing:-.025em;color:var(--ink);line-height:1;}
+.roi-stat-box.hl .roi-stat-num{color:#0a0f1c;}
+.roi-bars{margin-bottom:22px;display:flex;flex-direction:column;gap:12px;}
+.roi-bar-row{display:grid;grid-template-columns:110px 1fr 44px;align-items:center;gap:14px;}
+.roi-bar-lbl{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,242,236,.65);}
+.roi-bar-track{height:4px;background:rgba(245,242,236,.08);border-radius:2px;overflow:hidden;}
+.roi-bar-fill{height:100%;border-radius:2px;transition:width .6s cubic-bezier(.22,.84,.32,1);}
+.roi-bar-fill.today{background:rgba(245,242,236,.28);}
+.roi-bar-fill.proj{background:var(--teal);}
+.roi-bar-pct{font-size:11px;font-weight:600;color:rgba(245,242,236,.72);text-align:right;}
+
+.roi-cta-link{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px;border-radius:100px;background:var(--ink);color:#0a0f1c;font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;margin-bottom:14px;transition:opacity .2s,transform .2s;}
+.roi-cta-link:hover{opacity:.88;transform:translateY(-1px)}
+.roi-fine{font-size:11.5px;color:rgba(245,242,236,.45);text-align:center;line-height:1.55;}
+
+/* ── CTA SECTION ── */
+.cta{padding:120px 40px;text-align:center;border-top:1px solid var(--line);position:relative;overflow:hidden;}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(125,211,252,.07) 0%,transparent 70%);pointer-events:none;}
+.cta-inner{max-width:780px;margin:0 auto;padding:0 40px;position:relative;z-index:1;}
+.cta-title{font-size:clamp(40px,5.4vw,72px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin:18px 0 22px;}
+.cta-title em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--sand);letter-spacing:-.01em;}
+.cta-desc{font-size:17px;color:var(--ink-dim);line-height:1.4;font-weight:300;max-width:600px;margin:0 auto 28px;}
+.cta-spots{display:inline-flex;align-items:center;gap:10px;margin-bottom:30px;font-size:11px;color:var(--ink-faint);letter-spacing:.18em;text-transform:uppercase;}
+.cta-spots .d{width:6px;height:6px;border-radius:50%;background:#facc15;box-shadow:0 0 0 3px rgba(250,204,21,.18);animation:pulse 2.4s infinite;}
+.cta-fine{font-size:12px;color:var(--ink-faint);margin-top:18px;letter-spacing:.04em;}
+.cta-cal{margin-top:64px;border:1px solid var(--line);border-radius:var(--rad);overflow:hidden;background:var(--surface);}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(250,204,21,.18)}50%{box-shadow:0 0 0 6px rgba(250,204,21,.06)}}
+@media(max-width:600px){.cta{padding:70px 20px;}.cta-inner{padding:0;}.cta-title{font-size:28px;line-height:1.1;}.cta-desc{font-size:15px;}}
+
+/* ── FOOTER ── */
+footer{position:relative;padding:32px 40px;background:var(--bg-2);display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);}
+.foot-left{display:flex;align-items:center;gap:14px}
+.foot-left img{height:38px;opacity:.85}
+.foot-text{font-size:12px;color:var(--ink-faint);letter-spacing:.02em;}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;}
+.foot-links a{font-size:12px;color:var(--ink-faint);transition:color .2s;}
+.foot-links a:hover{color:var(--ink)}
+
+/* ── DAILY COST ── */
+.daily-cost-row{display:flex;justify-content:space-between;align-items:center;background:rgba(125,211,252,.06);border:1px solid var(--teal-line);border-radius:10px;padding:14px 18px;margin-bottom:18px;}
+.daily-cost-label{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(125,211,252,.8);}
+.daily-cost-num{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.025em;color:var(--teal);}
+
+/* ── TIME TO RESULTS ── */
+.time-to-results{display:flex;align-items:flex-start;gap:12px;background:rgba(245,242,236,.04);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-bottom:22px;}
+.ttr-icon{flex-shrink:0;color:var(--teal);margin-top:1px;}
+.ttr-text{font-size:12.5px;color:var(--ink-dim);line-height:1.55;}
+.ttr-text strong{color:var(--ink);font-weight:600;}
+
+/* ── FAQ ── */
+.faq-section{padding:100px 40px;border-top:1px solid var(--line);}
+.faq-inner{max-width:900px;margin:0 auto;}
+.faq-header{text-align:center;margin-bottom:56px;}
+.faq-header h2{font-size:clamp(32px,4vw,52px);font-weight:700;letter-spacing:-.035em;line-height:1.05;margin-top:12px;}
+.faq-grid{display:flex;flex-direction:column;gap:2px;}
+.faq-item{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);}
+.faq-item + .faq-item{margin-top:8px;}
+.faq-q{font-size:15px;font-weight:600;color:var(--ink);padding:22px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;letter-spacing:-.01em;}
+.faq-q::after{content:'+';font-size:20px;font-weight:300;color:var(--ink-faint);flex-shrink:0;transition:transform .25s;}
+.faq-item.open .faq-q::after{transform:rotate(45deg);}
+.faq-a{font-size:14px;color:var(--ink-dim);line-height:1.7;padding:0 24px;max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.2,.8,.2,1),padding .3s;}
+.faq-item.open .faq-a{max-height:500px;padding:0 24px 22px;}
+
+@media(max-width:600px){
+  .faq-section{padding:60px 20px;}
+  .faq-header h2{font-size:28px;}
+  .daily-cost-row{flex-wrap:wrap;gap:8px;}
+  .daily-cost-label{font-size:10px;}
+  .daily-cost-num{font-size:20px;}
+  .faq-q{font-size:14px;padding:16px 18px;}
+  .faq-a{font-size:13px;line-height:1.65;}
+  .faq-item.open .faq-a{padding:0 18px 16px;}
+  .bench-label{font-size:11.5px;}
+  .time-to-results{padding:14px 16px;}
+  .ttr-text{font-size:12px;}
+}
+
+/* ── RESPONSIVE ── */
+.slider-hints{display:flex;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--ink-faint);letter-spacing:.04em;}
+@media(max-width:900px){
+  .calc-grid{grid-template-columns:1fr;}
+  .panel.results{position:static;}
+  .roi-hero{padding:104px 20px 48px;}
+  .calc-wrap{padding:0 20px 70px;}
+}
+@media(max-width:600px){
+  .roi-hero{padding:96px 20px 40px;}
+  .roi-hero h1{font-size:36px;letter-spacing:-.03em;}
+  .roi-hero p{font-size:15px;}
+  .panel{padding:24px 20px;}
+  .roi-main-num{font-size:clamp(38px,11vw,56px);}
+  .roi-stats-row{grid-template-columns:1fr 1fr;}
+  .roi-stats-row .roi-stat-box:last-child{grid-column:span 2;}
+  .roi-bar-row{grid-template-columns:72px 1fr 36px;gap:10px;}
+  .roi-bar-lbl{font-size:9px;}
+  .roi-field-header{flex-wrap:wrap;gap:6px;}
+  .roi-field-name{font-size:9.5px;}
+  .roi-field-val{font-size:18px;}
+  .roi-cta-link{font-size:14px;padding:15px;}
+  footer{padding:24px 20px;flex-direction:column;align-items:flex-start;}
+}
+/* ── ACCESSIBILITY ── */
+*:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px;}
+
+</style>
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RbheMP"></script>
+</head>
+<body>
+<canvas id="shaderCanvas"></canvas>
+<div class="shader-overlay"></div>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/img-064.jpg" alt="Emailro" width="156" height="52" decoding="sync">
+  </a>
+  <div class="nav-center">
+    <a href="process.html">Process</a>
+    <a href="cases.html">Case Studies</a>
+    <a href="index.html#emails">Email Design</a>
+    <a href="index.html#testimonials">Testimonials</a>
+    <a href="roi.html" class="active">ROI Calculator</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://calendly.com/muhammadahmad4u/one-on-one" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call →</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-progress" id="navProgress"></div>
+</nav>
+<div class="nav-drawer" id="navDrawer">
+  <a href="process.html">Process</a>
+  <a href="cases.html">Case Studies</a>
+  <a href="index.html#emails">Email Design</a>
+  <a href="index.html#testimonials">Testimonials</a>
+  <a href="roi.html" class="active">ROI Calculator</a>
+  <a href="https://calendly.com/muhammadahmad4u/one-on-one" target="_blank" rel="noopener noreferrer" style="color:var(--teal);margin-top:8px;">Book a Call →</a>
+</div>
+
+<!-- ── HERO ── -->
+<section class="roi-hero">
+  <div class="eyebrow">ROI Calculator</div>
+  <h1>What is your email list <br><span class="serif">actually</span> <span class="tl">worth?</span></h1>
+  <p>Most DTC brands get 10–20% of revenue from email. A properly built Klaviyo account should be doing at least 30–45%. See the gap — and what it's costing you every month.</p>
+</section>
+
+<!-- ── CALCULATOR ── -->
+<div class="calc-wrap">
+  <div class="calc-grid">
+
+    <!-- LEFT: Inputs -->
+    <div class="panel">
+      <div class="panel-title">Your numbers</div>
+
+      <div class="roi-field">
+        <div class="roi-field-header">
+          <div class="roi-field-name">
+            <span style="font-family:var(--display);font-size:13px;font-weight:700;color:var(--ink-faint)">$</span>
+            Monthly Store Revenue
+          </div>
+          <div class="roi-field-val" id="val-rev">$1.1M</div>
+        </div>
+        <input type="range" class="roi-slider" id="sl-rev" min="0" max="100" value="67">
+        <div class="roi-slider-hints"><span>$50k</span><span>$5M+</span></div>
+      </div>
+
+      <div class="roi-field">
+        <div class="roi-field-header">
+          <div class="roi-field-name">
+            <svg width="13" height="14" viewBox="0 0 13 14" fill="currentColor" style="opacity:.65"><path d="M7.5 1L2 8h5l-1.5 5L13 6H8L9.5 1z"/></svg>
+            Current % of Revenue from Email
+          </div>
+          <div class="roi-field-val" id="val-pct">27%</div>
+        </div>
+        <input type="range" class="roi-slider" id="sl-pct" min="5" max="40" value="27">
+        <div class="roi-slider-hints"><span>5%</span><span>40%</span></div>
+      </div>
+
+      <div class="benchmarks">
+        <div class="bench-title">Email marketing benchmarks</div>
+        <div class="bench-row">
+          <span class="bench-label">Average email % of store revenue</span>
+          <span class="bench-badge warn">~25%</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-label">Well-optimised accounts</span>
+          <span class="bench-badge good">30–50%</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-label">Email ROI — ecommerce</span>
+          <span class="bench-badge good">$45 per $1 spent</span>
+        </div>
+        <div class="bench-row">
+          <span class="bench-label">Paid social — avg return</span>
+          <span class="bench-badge bad">$2–$4 per $1 spent</span>
+        </div>
+        <p style="font-size:10.5px;color:var(--ink-faint);margin-top:12px;line-height:1.5">Based on published Klaviyo and industry benchmark data.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Results -->
+    <div class="panel results">
+      <div class="roi-lift-tag">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="12" x2="7" y2="2"/><polyline points="3,6 7,2 11,6"/></svg>
+        Monthly revenue gap
+      </div>
+      <div class="roi-main-num" id="r-monthly-lift">$164k</div>
+      <div class="roi-main-sub" id="r-lift-sub">From 27% to 42% of revenue.</div>
+
+      <div class="roi-stats-row">
+        <div class="roi-stat-box">
+          <div class="roi-stat-lbl">You now / mo</div>
+          <div class="roi-stat-num" id="r-current">$295k</div>
+        </div>
+        <div class="roi-stat-box hl">
+          <div class="roi-stat-lbl">Benchmark / mo</div>
+          <div class="roi-stat-num" id="r-projected">$459k</div>
+        </div>
+        <div class="roi-stat-box">
+          <div class="roi-stat-lbl">Annual gap</div>
+          <div class="roi-stat-num" id="r-annual">$2M</div>
+        </div>
+      </div>
+
+      <!-- Daily cost of inaction -->
+      <div class="daily-cost-row">
+        <div class="daily-cost-label">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="5"/><path d="M6 3.5v2.8l1.5 1.5"/></svg>
+          Cost of inaction — every day
+        </div>
+        <div class="daily-cost-num" id="r-daily">$5k</div>
+      </div>
+
+      <div class="roi-bars">
+        <div class="roi-bar-row">
+          <div class="roi-bar-lbl">You now</div>
+          <div class="roi-bar-track"><div class="roi-bar-fill today" id="bar-today" style="width:54%"></div></div>
+          <div class="roi-bar-pct" id="pct-today">27%</div>
+        </div>
+        <div class="roi-bar-row">
+          <div class="roi-bar-lbl" style="color:var(--ink);font-weight:700">Benchmark</div>
+          <div class="roi-bar-track"><div class="roi-bar-fill proj" id="bar-proj" style="width:84%"></div></div>
+          <div class="roi-bar-pct" id="pct-proj">42%</div>
+        </div>
+      </div>
+
+      <!-- Time to results -->
+      <div class="time-to-results">
+        <div class="ttr-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#7dd3fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7.5"/><polyline points="5.5,9 7.5,11.5 12.5,6.5"/></svg>
+        </div>
+        <div class="ttr-text">
+          <strong>We get everything live in 2 weeks.</strong> Most of our clients start seeing email revenue lift within the first 30 days.
+        </div>
+      </div>
+
+      <a href="https://calendly.com/muhammadahmad4u/one-on-one" target="_blank" rel="noopener noreferrer" class="roi-cta-link">Book a free Klaviyo audit →</a>
+      <p class="roi-fine">Directional estimate. Results vary by list health, niche, and setup. Not a guarantee.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── FAQ ── -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-header">
+      <div class="eyebrow" style="justify-content:center">Common questions</div>
+      <h2>What DTC brands ask <span class="serif">before they start.</span></h2>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <div class="faq-q">Does this work for my product type?</div>
+        <div class="faq-a">Yes — but the benchmark range shifts depending on what you sell. Consumable and replenishable products (supplements, skincare, food) typically see 25–40% of revenue from email because repeat purchase cycles are short. One-time or infrequent purchase products (furniture, high-ticket items) typically see 15–25%. Gaming, apparel, and collectibles sit in between. The gap in your calculator is calibrated to the industry average — your specific ceiling may be higher or lower depending on purchase frequency.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What if my list is small or cold?</div>
+        <div class="faq-a">List size matters less than list health and setup. A brand with 5,000 engaged subscribers and a properly built flow infrastructure will outperform a brand with 80,000 cold contacts every time. If your list is cold, the first step is a re-engagement and cleaning process — not blasting more emails. Once deliverability is restored, the flows do the rest. We've seen small lists drive disproportionate revenue because the fundamentals were right.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How quickly will I see results?</div>
+        <div class="faq-a">Most of our accounts see measurable revenue lift within 30 days of complete setup. Flows go live in the first two weeks — that's when automated revenue starts. Campaigns start generating within days of the first send. The 30-day mark is typically when the data starts compounding: open rates stabilise, segments sharpen, and the system starts working as a whole rather than individual parts.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Why email over paid ads?</div>
+        <div class="faq-a">Email averages $45 return for every $1 spent in ecommerce. Paid social averages $2–$4 per $1 spent. You don't own your ad account — Meta and Google can change costs, restrict your account, or kill your ROAS overnight. You do own your email list. Every subscriber is a customer or prospect you've already paid to acquire. Email turns that sunk cost into compounding revenue without paying again to reach them.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Do I need to be at a certain revenue level first?</div>
+        <div class="faq-a">Not a specific number — but there are signals that tell you the time is right. Email and SMS driving less than 30% of your total revenue. CAC on paid channels rising and eating into margin. A Klaviyo account that hasn't been properly set up or updated in months. If any of these describe you, waiting doesn't make the math better. The gap you see in the calculator above compounds every month you leave it.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between flows and campaigns?</div>
+        <div class="faq-a">Flows are automated sequences triggered by a customer's behaviour — abandoned cart, post-purchase, browse abandonment, win-back. They run 24/7 without you touching them. Campaigns are manually sent broadcasts — promotions, new drops, seasonal sends. Flows are set-and-optimise, campaigns are ongoing. Industry data shows flows generate around 37–41% of total email revenue despite being only 2–5% of total sends — because they reach people at exactly the right moment. Both matter. Neither replaces the other.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta">
+  <div class="cta-inner fade-up">
+    <div style="text-align:center"><div class="eyebrow center">Ready to start</div></div>
+    <h2 class="cta-title">Most brands see revenue move in <em>30 days.</em></h2>
+    <p class="cta-desc">The gap in the calculator above is real. Every month it stays open is revenue that doesn't come back. Book a free audit and we'll show you exactly where it's leaking — and what it takes to close it.</p>
+    <div class="cta-spots"><span class="d"></span> 5 clients at a time · 2 spots open</div><br>
+    <a href="https://calendly.com/muhammadahmad4u/one-on-one" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book a free audit <span class="arr">→</span></a>
+    <p class="cta-fine">15-min call · Free · No obligation</p>
+    <div class="cta-cal">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/muhammadahmad4u/one-on-one?background_color=11182a&text_color=f5f2ec&primary_color=7dd3fc" style="min-width:320px;height:660px"></div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-left">
+    <img loading="lazy" src="assets/img-064.jpg" alt="Emailro" decoding="async">
+    <span class="foot-text">© 2026 Emailro — Your list has money in it. We get it out.</span>
+  </div>
+  <div class="foot-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="https://www.linkedin.com/in/muhammadahmademailmarketingexpertklaviyospecialist/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="https://calendly.com/muhammadahmad4u/one-on-one" target="_blank" rel="noopener noreferrer">Calendly</a>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll ── */
+const nav = document.getElementById('nav');
+const navProgress = document.getElementById('navProgress');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const y = window.scrollY;
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const p = h > 0 ? Math.min(y / h * 100, 100) : 0;
+  navProgress.style.setProperty('--p', p + '%');
+}, {passive:true});
+
+function toggleDrawer(){
+  const h = document.getElementById('hamburger');
+  const d = document.getElementById('navDrawer');
+  h.classList.toggle('open');
+  d.classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  const d = document.getElementById('navDrawer');
+  const h = document.getElementById('hamburger');
+  if(d.classList.contains('open') && !d.contains(e.target) && !h.contains(e.target)){
+    d.classList.remove('open'); h.classList.remove('open');
+  }
+});
+
+/* ── ROI Calculator ── */
+(function(){
+  const slRev = document.getElementById('sl-rev');
+  const slPct = document.getElementById('sl-pct');
+  if(!slRev) return;
+
+  function revFromSlider(v){
+    const lo = Math.log(50000), hi = Math.log(5000000);
+    return Math.round(Math.exp(lo + (v/100)*(hi-lo)) / 1000) * 1000;
+  }
+  function fmtMoney(n){
+    if(n >= 1000000) return '$' + parseFloat((n/1000000).toFixed(1)) + 'M';
+    if(n >= 1000) return '$' + Math.round(n/1000) + 'k';
+    return '$' + Math.round(n);
+  }
+  function targetPct(cur){
+    const lift = cur < 15 ? 22 : cur < 25 ? 18 : cur < 35 ? 15 : cur < 45 ? 10 : 6;
+    return Math.min(cur + lift, 45);
+  }
+  function fillSlider(el, val, min, max){
+    const p = ((val - min) / (max - min) * 100).toFixed(1);
+    el.style.background = `linear-gradient(to right,rgba(245,242,236,.85) ${p}%,rgba(245,242,236,.12) ${p}%)`;
+  }
+
+  function calculate(){
+    const rev = revFromSlider(+slRev.value);
+    const pct = +slPct.value;
+    const tgt = targetPct(pct);
+
+    const cur    = rev * pct / 100;
+    const proj   = rev * tgt / 100;
+    const lift   = proj - cur;
+    const annual = lift * 12;
+
+    document.getElementById('val-rev').textContent = fmtMoney(rev);
+    document.getElementById('val-pct').textContent = pct + '%';
+
+    document.getElementById('r-monthly-lift').textContent = fmtMoney(lift);
+    document.getElementById('r-lift-sub').textContent     = `From ${pct}% to ${tgt}% of revenue.`;
+    document.getElementById('r-current').textContent   = fmtMoney(cur);
+    document.getElementById('r-projected').textContent = fmtMoney(proj);
+    document.getElementById('r-annual').textContent    = fmtMoney(annual);
+    document.getElementById('r-daily').textContent     = fmtMoney(Math.round(lift / 30));
+
+    const scale = 50;
+    document.getElementById('bar-today').style.width = Math.min(pct/scale*100, 100) + '%';
+    document.getElementById('bar-proj').style.width  = Math.min(tgt/scale*100, 100) + '%';
+    document.getElementById('pct-today').textContent = pct + '%';
+    document.getElementById('pct-proj').textContent  = tgt + '%';
+
+    fillSlider(slRev, +slRev.value, 0, 100);
+    fillSlider(slPct, +slPct.value, 5, 40);
+  }
+
+  [slRev, slPct].forEach(s => s.addEventListener('input', calculate));
+  calculate();
+})();
+
+/* ── FAQ Accordion ── */
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if(!isOpen) item.classList.add('open');
+  });
+});
+</script>
+<script>
+/* ── Procedural Ground Background ── */
+(function(){
+  const canvas = document.getElementById('shaderCanvas');
+  if(!canvas) return;
+
+  const gl = canvas.getContext('webgl');
+  if(!gl) return;
+
+  const vsSource = `
+    attribute vec2 position;
+    void main(){ gl_Position = vec4(position, 0.0, 1.0); }
+  `;
+
+  const fsSource = `
+    precision highp float;
+    uniform float u_time;
+    uniform vec2  u_resolution;
+
+    float hash(vec2 p){
+      return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);
+    }
+    float noise(vec2 p){
+      vec2 i=floor(p), f=fract(p);
+      vec2 u=f*f*(3.0-2.0*f);
+      return mix(mix(hash(i+vec2(0,0)),hash(i+vec2(1,0)),u.x),
+                 mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),u.x),u.y);
+    }
+    void main(){
+      vec2 uv=(gl_FragCoord.xy*2.0-u_resolution.xy)/min(u_resolution.x,u_resolution.y);
+      float depth=1.0/(uv.y+1.15);
+      vec2 gridUv=vec2(uv.x*depth, depth+u_time*0.15);
+      float n=noise(gridUv*3.5);
+      float ripples=sin(gridUv.y*18.0+n*8.0+u_time*0.5);
+      float topoLine=smoothstep(0.03,0.0,abs(ripples));
+      vec3 baseColor   = vec3(0.04,0.03,0.12);
+      vec3 accentColor = vec3(0.1,0.3,0.8);
+      vec3 neonColor   = vec3(0.6,0.2,1.0);
+      vec3 color=mix(baseColor,accentColor,n*0.6);
+      color+=topoLine*neonColor*depth*0.4;
+      float fade=smoothstep(0.1,-1.0,uv.y);
+      color*=(1.0-length(uv)*0.45)*(1.0-fade);
+      gl_FragColor=vec4(color,1.0);
+    }
+  `;
+
+  function createShader(type, src){
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, createShader(gl.VERTEX_SHADER,   vsSource));
+  gl.attachShader(prog, createShader(gl.FRAGMENT_SHADER, fsSource));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1,-1, 1,-1, -1, 1,
+    -1, 1, 1,-1,  1, 1
+  ]), gl.STATIC_DRAW);
+
+  const posAttr = gl.getAttribLocation(prog, 'position');
+  gl.enableVertexAttribArray(posAttr);
+  gl.vertexAttribPointer(posAttr, 2, gl.FLOAT, false, 0, 0);
+
+  const timeLoc = gl.getUniformLocation(prog, 'u_time');
+  const resLoc  = gl.getUniformLocation(prog, 'u_resolution');
+
+  function render(time){
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    if(canvas.width !== w || canvas.height !== h){
+      canvas.width  = w;
+      canvas.height = h;
+      gl.viewport(0, 0, w, h);
+    }
+    gl.uniform1f(timeLoc, time * 0.001);
+    gl.uniform2f(resLoc, w, h);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+})();
+</script>
+</body>
+</html>

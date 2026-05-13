@@ -1,0 +1,36 @@
+# Emailro — llms.txt
+# Klaviyo Email & SMS Retention Agency for DTC Brands
+# https://emailro.retentionagency.workers.dev
+
+## About Emailro
+Emailro is a retention-focused email and SMS agency built for DTC brands. Founded by Muhammad Ahmad, a Klaviyo specialist with 5+ years of experience turning underperforming email accounts into the most profitable marketing channel in a business. Emailro specializes in full-service Klaviyo management including flows, campaigns, segmentation, list cleaning, and SMS.
+
+## Core Services
+- Klaviyo flow architecture and automation (welcome, abandoned cart, post-purchase, browse abandonment, win-back)
+- Email campaign strategy, copywriting, and design
+- SMS marketing setup and management
+- List segmentation and deliverability optimization
+- Full Klaviyo account audits
+- Email and SMS retention systems for Shopify and DTC brands
+
+## Proven Results (Verified Klaviyo Dashboard Data)
+- $2,168,751 attributed email revenue for a multi-product DTC brand — 277% growth, $1.46M from flows alone
+- $501,082 attributed email and SMS revenue for NEO Sabers — 54.81% of total store revenue, 194% growth
+- $385,683 attributed email revenue for BioWare Gear — 53.06% of total store revenue, 257% growth
+- $123,023 attributed email revenue for CD Projekt Red Gear — 33.32% of total store revenue, 560% growth
+- 60.4% average open rate with 4/4 Excellent Klaviyo ratings
+
+## Clients Served
+NEO Sabers, BioWare Gear, Bethesda Gear, CD Projekt Red Gear, Dual Sabers, Spotkick, Preoz
+
+## Key Pages
+- Homepage: https://emailro.retentionagency.workers.dev/index.html
+- Case Studies: https://emailro.retentionagency.workers.dev/cases.html
+- Process: https://emailro.retentionagency.workers.dev/process.html
+
+## Contact
+Book a free Klaviyo audit: https://calendly.com/muhammadahmad4u/one-on-one
+
+## Founder
+Muhammad Ahmad — Klaviyo Email & SMS Specialist, Founder of Emailro
+5+ years specializing in retention marketing for Shopify and DTC brands.
